@@ -11,13 +11,13 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
 
     @Override
     public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
-        println("BeanPostProcessor", "postProcessBeforeInitialization");
+        println("BeanPostProcessor", "postProcessBeforeInitialization", s);
         return o;
     }
 
     @Override
     public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
-        println("BeanPostProcessor", "postProcessAfterInitialization");
+        println("BeanPostProcessor", "postProcessAfterInitialization", s);
         return o;
     }
 }
