@@ -11,23 +11,23 @@ import org.springframework.context.ApplicationContextAware;
 
 import static com.jonas.test.spring.lifecycle.Log.println;
 
-public class MyConfigurationAware implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
+public class OtherConfigurationAware implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println("MyConfigurationAware", "postProcessBeanDefinitionRegistry");
+        println("OtherConfigurationAware", "postProcessBeanDefinitionRegistry");
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println("MyConfigurationAware", "postProcessBeanFactory");
+        println("OtherConfigurationAware", "postProcessBeanFactory");
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println("MyConfigurationAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
-        println("MyConfigurationAware", "getBean (MyImportProperties) (Before)");
+        println("OtherConfigurationAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
+        println("OtherConfigurationAware", "getBean (MyImportProperties) (Before)");
         MyImportProperties properties = applicationContext.getBean(MyImportProperties.class);
-        println("MyConfigurationAware", "getBean (MyImportProperties) (After)", properties.getName());
+        println("OtherConfigurationAware", "getBean (MyImportProperties) (After)", properties.getName());
     }
 }
