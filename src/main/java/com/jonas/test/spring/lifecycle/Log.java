@@ -5,6 +5,16 @@ public final class Log {
         println(component, method, "");
     }
 
+    public static void println(String component, String method, Object obj) {
+        String msg;
+        if (obj == null) {
+            msg = "null";
+        } else {
+            msg = obj.getClass().getName();
+        }
+        println(component, method, msg);
+    }
+
     public static void println(String component, String method, String msg) {
         System.out.println(String.format("============> %-40s | %-50s | %-100s <============", component, method, msg));
     }

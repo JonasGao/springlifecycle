@@ -15,12 +15,12 @@ public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRe
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println("MyImportAware", "postProcessBeanDefinitionRegistry");
+        println("MyImportAware", "postProcessBeanDefinitionRegistry", registry);
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println("MyImportAware", "postProcessBeanFactory");
+        println("MyImportAware", "postProcessBeanFactory", beanFactory);
     }
 
     @Override

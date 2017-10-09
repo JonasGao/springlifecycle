@@ -23,12 +23,12 @@ public class MyAutoAware implements BeanFactoryPostProcessor, BeanDefinitionRegi
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println("MyAutoAware", "postProcessBeanDefinitionRegistry");
+        println("MyAutoAware", "postProcessBeanDefinitionRegistry", registry);
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println("MyAutoAware", "postProcessBeanFactory");
+        println("MyAutoAware", "postProcessBeanFactory", beanFactory);
     }
 
     @Override
