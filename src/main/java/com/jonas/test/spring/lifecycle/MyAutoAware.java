@@ -1,7 +1,6 @@
 package com.jonas.test.spring.lifecycle;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -18,9 +17,6 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @EnableConfigurationProperties(AutoAwareProperties.class)
 public class MyAutoAware implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
 
-    @Autowired
-    private AutoAwareProperties properties;
-
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         println("MyAutoAware", "postProcessBeanDefinitionRegistry", registry);
@@ -29,12 +25,14 @@ public class MyAutoAware implements BeanFactoryPostProcessor, BeanDefinitionRegi
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
         println("MyAutoAware", "postProcessBeanFactory", beanFactory);
+        println("MyAutoAware", "getBean (AutoAwareProperties) (Before)");
+        AutoAwareProperties properties = beanFactory.getBean(AutoAwareProperties.class);
+        println("MyAutoAware", "getBean (AutoAwareProperties) (After)", String.valueOf(properties));
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         println("MyAutoAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
-        println("MyAutoAware", "autowired AutoAwareProperties", String.valueOf(properties));
     }
 }
 
