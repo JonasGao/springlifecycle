@@ -16,6 +16,6 @@ public final class Log {
     }
 
     public static void println(String component, String method, String msg) {
-        System.out.println(String.format("============> %-40s | %-50s | %-100s <============", component, method, msg));
+        System.out.println(String.format("============> %-40s | %-60s | %-100s <============", component, method, msg));
     }
 }
