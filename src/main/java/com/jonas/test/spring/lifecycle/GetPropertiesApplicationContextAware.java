@@ -13,7 +13,7 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 public class GetPropertiesApplicationContextAware implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println("GetPropertiesApplicationContextAware", "setApplicationContext");
+        println("GetPropertiesApplicationContextAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
         println("GetPropertiesApplicationContextAware", "getBean (GetInContextAwareProperties) (Before)");
         GetInContextAwareProperties properties = applicationContext.getBean(GetInContextAwareProperties.class);
         println("GetPropertiesApplicationContextAware", "getBean (GetInContextAwareProperties) (After)", properties.toString());

@@ -11,6 +11,6 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 public class MyApplicationContextAware implements ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println("MyApplicationContextAware", "setApplicationContext");
+        println("MyApplicationContextAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
     }
 }
