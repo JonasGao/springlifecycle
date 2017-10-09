@@ -7,6 +7,6 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(MyImportAware.class)
+@Import({MyImportAware.class, MyConfigurationAwareConfiguration.class})
 public @interface EnableMyImportAware {
 }
