@@ -15,7 +15,8 @@ public class MyConfiguration {
     }
 
     @Bean
-    public MyConfigurationOutputBean myConfigurationOutputBean() {
+    public MyConfigurationOutputBean myConfigurationOutputBean(MyProperties properties) {
+        println("MyConfiguration", "myConfigurationOutputBean", properties.getName());
         return new MyConfigurationOutputBean();
     }
 }
