@@ -31,11 +31,17 @@ public class Application implements CommandLineRunner {
     @Autowired
     private ConfigurableListableBeanFactory configurableListableBeanFactory;
 
+    @Autowired
+    private MyService myService;
+
     @Override
     public void run(String... args) throws Exception {
         println("Application (CommandLineRunner)", "run");
 
+        System.out.println("<====");
         System.out.println(beanDefinitionRegistry);
         System.out.println(configurableListableBeanFactory);
+        System.out.println(myService);
+        System.out.println("<====");
     }
 }
