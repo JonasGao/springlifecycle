@@ -7,7 +7,8 @@ import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
 @SpringBootApplication
-
+@Import(Configuration1.class)
+@Enable2
 public class App {
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
