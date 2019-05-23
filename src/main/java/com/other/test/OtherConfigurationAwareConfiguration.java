@@ -13,7 +13,7 @@ public class OtherConfigurationAwareConfiguration {
 
     @Bean
     public OtherConfigurationAware otherConfigurationAware() {
-        println(log, "@Bean", "otherConfigurationAware");
+        println(log, "(@Bean)", "otherConfigurationAware");
         return new OtherConfigurationAware();
     }
 }
