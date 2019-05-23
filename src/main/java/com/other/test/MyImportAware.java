@@ -15,6 +15,13 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @Slf4j
 public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRegistryPostProcessor, ApplicationContextAware {
 
+    public MyImportAware() {
+        println(log, "MyImportAware", "constructor", "开始构造MyImportAware了。");
+        println(log, "", "", "这个类是通过主Context类上标记@EnableMyImportAware注解，然后这个注解再@Import这个类。");
+        println(log, "", "", "说明开始处理这类自定义@Import注解了，不过顺序不好确定，有可能是因为这个注解的书写顺序是在@Import下面");
+        println(log, "", "", "才会比上面的MyImportBeanDefinitionRegistrar晚。");
+    }
+
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
         println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "registry 的类型是 " + registry.getClass());
@@ -27,7 +34,7 @@ public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRe
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println(log, "ApplicationContextAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
+        println(log, "ApplicationContextAware", "setApplicationContext", "依然是没啥好说的");
         println(log, "ApplicationContextAware", "getBean (MyImportProperties) (Before)");
         MyImportProperties properties = applicationContext.getBean(MyImportProperties.class);
         println(log, "ApplicationContextAware", "getBean (MyImportProperties) (After)", properties.getName());

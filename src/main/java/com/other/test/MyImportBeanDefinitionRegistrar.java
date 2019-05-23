@@ -11,6 +11,6 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 public class MyImportBeanDefinitionRegistrar implements ImportBeanDefinitionRegistrar {
     @Override
     public void registerBeanDefinitions(AnnotationMetadata annotationMetadata, BeanDefinitionRegistry beanDefinitionRegistry) {
-        println(log, "ImportBeanDefinitionRegistrar", "registerBeanDefinitions", "主 Context 启动时，先处理了 @Import");
+        println(log, "ImportBeanDefinitionRegistrar", "registerBeanDefinitions", "主 Context 启动时，先处理了 @Import。而且是registry，优先级确实高");
     }
 }

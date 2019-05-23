@@ -20,17 +20,17 @@ public class MyConfigurationAware implements BeanFactoryPostProcessor, BeanDefin
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println(log, "MyConfigurationAware", "postProcessBeanDefinitionRegistry", "registry 类型为 " + registry.getClass().getCanonicalName());
+        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "还是优先（尽快）处理registry。级别真的高。不过这里不是扫描到的，而是来自上面的@Configuration，MyConfigurationAwareConfiguration。说明会尽快收集类型信息，然后有些类型信息会尽早处理？？？还是得看看源码");
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println(log, "MyConfigurationAware", "postProcessBeanFactory", "beanFactory 类型为 " + beanFactory.getClass().getCanonicalName());
+        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory", "beanFactory 类型为 " + beanFactory.getClass().getCanonicalName());
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println(log, "MyConfigurationAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
+        println(log, "ApplicationContextAware", "setApplicationContext", "这就没啥好说的了，参照上面的说明");
     }
 }
 
@@ -39,12 +39,12 @@ public class MyConfigurationAware implements BeanFactoryPostProcessor, BeanDefin
 @Slf4j
 class MyConfigurationAwareConfiguration {
     public MyConfigurationAwareConfiguration() {
-        println(log, "@Configuration", "constructor", "开始处理@Configuration了？？？这个@Configuration也是由主Context扫描到的");
+        println(log, "@Configuration", "constructor", "开始处理@Configuration了？？？这个@Configuration也是由主Context扫描到的。参考下一行日志，这里开始构造，但是还没开始调用@Bean。应该也是在收集类型信息");
     }
 
     @Bean
     public MyConfigurationAware myConfigurationAware(MyConfigurationAwareProperties properties) {
-        println(log, "@Bean", "MyConfigurationAwareConfiguration.myConfigurationAware", "取得@EnableConfigurationProperties(MyConfigurationAwareProperties.class)的实例");
+        println(log, "@Bean", "MyConfigurationAwareConfiguration.myConfigurationAware", "开始调用@Bean方法，这里取得了@EnableConfigurationProperties(MyConfigurationAwareProperties.class)的实例");
         return new MyConfigurationAware();
     }
 }

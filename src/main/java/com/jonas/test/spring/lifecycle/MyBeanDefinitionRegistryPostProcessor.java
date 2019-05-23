@@ -14,7 +14,7 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry beanDefinitionRegistry) throws BeansException {
-        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "同上，registry的处理顺序，应该是要高于factory和processor等组件");
+        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "同上，registry的处理顺序，应该是要高于factory和processor等组件。也是主Context扫描而来");
     }
 
     @Override

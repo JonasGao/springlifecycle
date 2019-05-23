@@ -9,6 +9,8 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @Component
 @Slf4j
 public class MyFactoryBean implements FactoryBean<MyFactoryBeanBean> {
+    private int getObjectTypeCount = 0;
+
     @Override
     public MyFactoryBeanBean getObject() throws Exception {
         println(log, "FactoryBean", "getObject");
@@ -19,7 +21,8 @@ public class MyFactoryBean implements FactoryBean<MyFactoryBeanBean> {
 
     @Override
     public Class<?> getObjectType() {
-        println(log, "FactoryBean", "getObjectType");
+        getObjectTypeCount++;
+        println(log, "FactoryBean", "getObjectType", "也是由主Context扫描到的。应该是先收集类型信息。不过会调用多次。这是第" + getObjectTypeCount + "次");
         return MyFactoryBeanBean.class;
     }
 

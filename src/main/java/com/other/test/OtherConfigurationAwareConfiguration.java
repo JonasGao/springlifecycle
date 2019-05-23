@@ -8,12 +8,12 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @Slf4j
 public class OtherConfigurationAwareConfiguration {
     public OtherConfigurationAwareConfiguration() {
-        println(log, "OtherConfigurationAwareConfiguration", "constructor");
+        println(log, "", "constructor");
     }
 
     @Bean
     public OtherConfigurationAware otherConfigurationAware() {
-        println(log, "OtherConfigurationAwareConfiguration", "otherConfigurationAware");
+        println(log, "@Bean", "otherConfigurationAware");
         return new OtherConfigurationAware();
     }
 }
