@@ -1,14 +1,16 @@
 package com.jonas.test.spring.lifecycle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import static com.jonas.test.spring.lifecycle.Log.println;
 
 @ConfigurationProperties("com.test.context.aware")
+@Slf4j
 public class GetInContextAwareProperties {
 
     public GetInContextAwareProperties() {
-        println("GetInContextAwareProperties", "constructor");
+        println(log, "GetInContextAwareProperties", "constructor");
     }
 
     private String name;
@@ -18,7 +20,7 @@ public class GetInContextAwareProperties {
     }
 
     public void setName(String name) {
-        println("GetInContextAwareProperties", "setName");
+        println(log, "GetInContextAwareProperties", "setName");
         this.name = name;
     }
 

@@ -1,5 +1,6 @@
 package com.jonas.test.spring.lifecycle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -9,18 +10,20 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 
 @Service
 @EnableConfigurationProperties(MyServiceProperties.class)
+@Slf4j
 public class MyService {
     @Autowired
     public MyService(MyServiceProperties properties) {
-        println("MyService", "constructor", properties.getName());
+        println(log, "MyService", "constructor", properties.getName());
     }
 }
 
 @ConfigurationProperties("com.test.service")
+@Slf4j
 class MyServiceProperties {
 
     public MyServiceProperties() {
-        println("MyServiceProperties", "constructor");
+        println(log, "MyServiceProperties", "constructor");
     }
 
     private String name;

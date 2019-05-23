@@ -1,21 +1,13 @@
 package com.jonas.test.spring.lifecycle;
 
+import org.slf4j.Logger;
+
 public final class Log {
-    public static void println(String component, String method) {
-        println(component, method, "");
+    public static void println(Logger log, String component, String method) {
+        println(log, component, method, "");
     }
 
-    public static void println(String component, String method, Object obj) {
-        String msg;
-        if (obj == null) {
-            msg = "null";
-        } else {
-            msg = obj.getClass().getName();
-        }
-        println(component, method, msg);
-    }
-
-    public static void println(String component, String method, String msg) {
-        System.out.println(String.format("============> %-40s | %-60s | %-100s <============", component, method, msg));
+    public static void println(Logger log, String component, String method, String msg) {
+        log.info(String.format("%-85s | %s", component + "." + method, msg));
     }
 }

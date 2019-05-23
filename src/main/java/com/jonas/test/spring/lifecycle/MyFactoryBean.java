@@ -1,15 +1,17 @@
 package com.jonas.test.spring.lifecycle;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.stereotype.Component;
 
 import static com.jonas.test.spring.lifecycle.Log.println;
 
 @Component
+@Slf4j
 public class MyFactoryBean implements FactoryBean<MyFactoryBeanBean> {
     @Override
     public MyFactoryBeanBean getObject() throws Exception {
-        println("FactoryBean", "getObject");
+        println(log, "FactoryBean", "getObject");
         MyFactoryBeanBean bean = new MyFactoryBeanBean();
         bean.setName("Hello FactoryBean");
         return bean;
@@ -17,13 +19,13 @@ public class MyFactoryBean implements FactoryBean<MyFactoryBeanBean> {
 
     @Override
     public Class<?> getObjectType() {
-        println("FactoryBean", "getObjectType");
+        println(log, "FactoryBean", "getObjectType");
         return MyFactoryBeanBean.class;
     }
 
     @Override
     public boolean isSingleton() {
-        println("FactoryBean", "isSingleton");
+        println(log, "FactoryBean", "isSingleton");
         return true;
     }
 }
