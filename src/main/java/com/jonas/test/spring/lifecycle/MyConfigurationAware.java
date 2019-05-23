@@ -39,12 +39,12 @@ public class MyConfigurationAware implements BeanFactoryPostProcessor, BeanDefin
 @Slf4j
 class MyConfigurationAwareConfiguration {
     public MyConfigurationAwareConfiguration() {
-        println(log, "@Configuration", "constructor", "开始处理@Configuration了？？？这个@Configuration也是由主Context扫描到的。参考下一行日志，这里开始构造，但是还没开始调用@Bean。应该也是在收集类型信息");
+        println(log, "(@Configuration)", "constructor", "开始处理@Configuration了？？？这个@Configuration也是由主Context扫描到的。参考下一行日志，这里开始构造，但是还没开始调用@Bean。应该也是在收集类型信息");
     }
 
     @Bean
     public MyConfigurationAware myConfigurationAware(MyConfigurationAwareProperties properties) {
-        println(log, "@Bean", "MyConfigurationAwareConfiguration.myConfigurationAware", "开始调用@Bean方法，这里取得了@EnableConfigurationProperties(MyConfigurationAwareProperties.class)的实例");
+        println(log, "(@Configuration)(@Bean)", "myConfigurationAware", "开始调用@Bean方法，这里取得了@EnableConfigurationProperties(MyConfigurationAwareProperties.class)的实例");
         return new MyConfigurationAware();
     }
 }

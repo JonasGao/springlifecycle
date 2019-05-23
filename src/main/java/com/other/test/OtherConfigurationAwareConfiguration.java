@@ -8,7 +8,7 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @Slf4j
 public class OtherConfigurationAwareConfiguration {
     public OtherConfigurationAwareConfiguration() {
-        println(log, "", "constructor");
+        println(log, "", "constructor", "这是主Context类上标记@EnableMyImportAware注解@Import的另一个类");
     }
 
     @Bean

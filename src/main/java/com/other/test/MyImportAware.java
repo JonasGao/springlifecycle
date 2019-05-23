@@ -24,7 +24,7 @@ public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRe
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "registry 的类型是 " + registry.getClass());
+        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry", "还是registry，不用多说");
     }
 
     @Override
