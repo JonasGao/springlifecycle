@@ -19,7 +19,7 @@ Spring Lifecycle
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.5.7.RELEASE)
 
-2019-05-25 10:43:56.073  INFO 12308 --- [           main] c.j.test.spring.lifecycle.Application    : Starting Application on DESKTOP-0KBFCP3 with PID 12308 (..........)
+2019-05-25 10:43:56.073  INFO 12308 --- [           main] c.j.test.spring.lifecycle.Application    : Starting Application on ......
 2019-05-25 10:43:56.074  INFO 12308 --- [           main] c.j.test.spring.lifecycle.Application    : No active profile set, falling back to default profiles: default
 2019-05-25 10:43:56.112  INFO 12308 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@15b3e5b: startup date [Sat May 25 10:43:56 CST 2019]; root of context hierarchy
 2019-05-25 10:43:56.300  INFO 12308 --- [           main] c.o.t.MyImportBeanDefinitionRegistrar    : ImportBeanDefinitionRegistrar.registerBeanDefinitions                                 | 主 Context 启动时，先处理了 @Import。而且是registry，优先级确实高
@@ -180,6 +180,41 @@ com.jonas.test.spring.lifecycle.MyService@1be2019a
 
 Process finished with exit code 0
 
+```
+
+## The life of a bean
+
+### 一个 Bean 的一生
+
+```
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v1.5.7.RELEASE)
+
+2019-05-25 10:59:36.229  INFO 8964 --- [           main] c.j.t.s.o.TheLifeOfABeanApplication      : Starting TheLifeOfABeanApplication on ......
+2019-05-25 10:59:36.237  INFO 8964 --- [           main] c.j.t.s.o.TheLifeOfABeanApplication      : No active profile set, falling back to default profiles: default
+2019-05-25 10:59:36.290  INFO 8964 --- [           main] s.c.a.AnnotationConfigApplicationContext : Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@6d3af739: startup date [Sat May 25 10:59:36 CST 2019]; root of context hierarchy
+2019-05-25 10:59:36.694  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : .constructor                                                                          | 
+2019-05-25 10:59:36.697  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : ApplicationContextAware.setBeanName                                                   | 
+2019-05-25 10:59:36.697  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : BeanNameAware.setBeanFactory                                                          | 
+2019-05-25 10:59:36.697  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : BeanFactoryAware.setApplicationContext                                                | 
+2019-05-25 10:59:36.698  INFO 8964 --- [           main] c.j.t.spring.onebean.ABeanPostProcessor  : BeanPostProcessor.postProcessBeforeInitialization                                     | 
+2019-05-25 10:59:36.699  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : .@PostConstruct                                                                       | 
+2019-05-25 10:59:36.700  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : InitializingBean.afterPropertiesSet                                                   | 
+2019-05-25 10:59:36.701  INFO 8964 --- [           main] com.jonas.test.spring.onebean.TheBean    : (@Bean initMethod=).init                                                              | 
+2019-05-25 10:59:36.701  INFO 8964 --- [           main] c.j.t.spring.onebean.ABeanPostProcessor  : BeanPostProcessor.postProcessAfterInitialization                                      | 
+2019-05-25 10:59:36.774  INFO 8964 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
+2019-05-25 10:59:36.781  INFO 8964 --- [           main] c.j.t.s.o.TheLifeOfABeanApplication      : Started TheLifeOfABeanApplication in 0.765 seconds (JVM running for 2.723)
+2019-05-25 10:59:36.782  INFO 8964 --- [       Thread-2] s.c.a.AnnotationConfigApplicationContext : Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@6d3af739: startup date [Sat May 25 10:59:36 CST 2019]; root of context hierarchy
+2019-05-25 10:59:36.783  INFO 8964 --- [       Thread-2] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
+2019-05-25 10:59:36.783  INFO 8964 --- [       Thread-2] com.jonas.test.spring.onebean.TheBean    : .@PreDestroy                                                                          | 
+2019-05-25 10:59:36.783  INFO 8964 --- [       Thread-2] com.jonas.test.spring.onebean.TheBean    : (@Bean destroyMethod=).destroy                                                        | 
+
+Process finished with exit code 0
 ```
 
 *这个工程还在进行中，还未完工。敬请期待...*
