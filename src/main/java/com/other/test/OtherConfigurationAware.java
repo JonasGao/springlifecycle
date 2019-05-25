@@ -17,19 +17,22 @@ public class OtherConfigurationAware implements BeanFactoryPostProcessor, BeanDe
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-        println(log, "OtherConfigurationAware", "postProcessBeanDefinitionRegistry");
+        println(log, "BeanDefinitionRegistryPostProcessor", "postProcessBeanDefinitionRegistry");
+        println(log, "", "", "这里注意！下面一行日志会提示myConfigurationAwareConfiguration被过早的创建了。而且无论运行多少次，出现的位置相同。可能说明Spring对registry的处理要告一段落了。");
+        println(log, "", "", "可以看到，警告之后，就开始处理factory了。");
     }
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println(log, "OtherConfigurationAware", "postProcessBeanFactory");
+        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory");
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        println(log, "OtherConfigurationAware", "setApplicationContext", applicationContext.getClass().getName() + "; " + applicationContext.getId());
-        println(log, "OtherConfigurationAware", "getBean (MyImportProperties) (Before)");
+        println(log, "ApplicationContextAware", "setApplicationContext");
+        println(log, "ApplicationContextAware", "getBean (MyImportProperties) (Before)");
         MyImportProperties properties = applicationContext.getBean(MyImportProperties.class);
-        println(log, "OtherConfigurationAware", "getBean (MyImportProperties) (After)", properties.getName());
+        println(log, "ApplicationContextAware", "getBean (MyImportProperties) (After)", String.valueOf(properties));
+        println(log, "", "", "这里还是applicationContext.getBean(MyImportProperties.class)。get出来，属性还是null。");
     }
 }

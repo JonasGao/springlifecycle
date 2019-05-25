@@ -12,21 +12,21 @@ public class MyEventListener {
 
     @EventListener(ContextRefreshedEvent.class)
     public void handleContextRefreshedEvent() {
-        println(log, "MyEventListener", "handleContextRefreshedEvent");
+        println(log, "(@EventListener)", "handleContextRefreshedEvent");
     }
 
     @EventListener(ContextStartedEvent.class)
     public void handleContextStartedEvent() {
-        println(log, "MyEventListener", "handleContextStartedEvent");
+        println(log, "(@EventListener)", "handleContextStartedEvent");
     }
 
     @EventListener(ContextStoppedEvent.class)
     public void handleContextStoppedEvent() {
-        println(log, "MyEventListener", "handleContextStoppedEvent");
+        println(log, "(@EventListener)", "handleContextStoppedEvent");
     }
 
     @EventListener(ContextClosedEvent.class)
     public void handleContextClosedEvent() {
-        println(log, "MyEventListener", "handleContextClosedEvent");
+        println(log, "(@EventListener)", "handleContextClosedEvent");
     }
 }

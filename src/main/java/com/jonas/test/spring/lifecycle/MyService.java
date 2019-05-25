@@ -14,7 +14,7 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 public class MyService {
     @Autowired
     public MyService(MyServiceProperties properties) {
-        println(log, "MyService", "constructor", properties.getName());
+        println(log, "", "constructor", String.valueOf(properties));
     }
 }
 
@@ -34,5 +34,12 @@ class MyServiceProperties {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MyServiceProperties{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

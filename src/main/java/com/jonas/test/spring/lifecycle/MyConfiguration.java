@@ -13,12 +13,12 @@ import static com.jonas.test.spring.lifecycle.Log.println;
 @Slf4j
 public class MyConfiguration {
     public MyConfiguration() {
-        println(log, "Configuration", "constructor");
+        println(log, "", "constructor", "因为这个Configuration没有实现或者提供，任何特殊类型的实例，所以现在才初始化。");
     }
 
     @Bean
     public MyConfigurationOutputBean myConfigurationOutputBean(MyProperties properties) {
-        println(log, "MyConfiguration", "myConfigurationOutputBean", properties.getName());
+        println(log, "(@Bean)", "myConfigurationOutputBean", properties.toString());
         return new MyConfigurationOutputBean();
     }
 }
@@ -26,7 +26,7 @@ public class MyConfiguration {
 @Slf4j
 class MyConfigurationOutputBean {
     public MyConfigurationOutputBean() {
-        println(log, "MyConfigurationOutputBean", "constructor");
+        println(log, "", "constructor");
     }
 }
 
@@ -47,5 +47,12 @@ class MyProperties {
     public void setName(String name) {
         println(log, "MyProperties", "setName");
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MyProperties{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

@@ -20,5 +20,6 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory", "注意，这里是来自BeanDefinitionRegistryPostProcessor继承的BeanFactoryPostProcessor");
+        println(log, "", "", "后边就开始，按初始化的顺序，逐个处理postProcessBeanFactory。");
     }
 }

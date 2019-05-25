@@ -25,7 +25,7 @@ public class MyConfigurationAware implements BeanFactoryPostProcessor, BeanDefin
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory", "beanFactory 类型为 " + beanFactory.getClass().getCanonicalName());
+        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory");
     }
 
     @Override

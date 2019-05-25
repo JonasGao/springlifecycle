@@ -19,19 +19,24 @@ public class MyBeanPostProcessor implements BeanPostProcessor {
         this.beforeMyBeanPostProcessor = beforeMyBeanPostProcessor;
     }
 
+
     @Override
-    public Object postProcessBeforeInitialization(Object o, String s) throws BeansException {
-        println(log, "BeanPostProcessor", "postProcessBeforeInitialization", s);
-        return o;
+    public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        println(log, "BeanPostProcessor", "postProcessBeforeInitialization", "beanName=" + beanName);
+        return bean;
     }
 
     @Override
-    public Object postProcessAfterInitialization(Object o, String s) throws BeansException {
-        println(log, "BeanPostProcessor", "postProcessAfterInitialization", s);
-        return o;
+    public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+        println(log, "BeanPostProcessor", "postProcessAfterInitialization", "beanName=" + beanName);
+        return bean;
     }
 }
 
 @Component
+@Slf4j
 class BeforeMyBeanPostProcessor {
+    public BeforeMyBeanPostProcessor() {
+        println(log, "", "constructor", "故意测试给BeanPostProcessor接口的实现类，注入一个组件会怎样。果然，下一句就会报警告。");
+    }
 }

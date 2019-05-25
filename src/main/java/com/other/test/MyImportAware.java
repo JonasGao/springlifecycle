@@ -29,7 +29,7 @@ public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRe
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory", "beanFactory 的类型是 " + beanFactory.getClass());
+        println(log, "BeanFactoryPostProcessor", "postProcessBeanFactory");
     }
 
     @Override
@@ -37,6 +37,10 @@ public class MyImportAware implements BeanFactoryPostProcessor, BeanDefinitionRe
         println(log, "ApplicationContextAware", "setApplicationContext", "依然是没啥好说的");
         println(log, "ApplicationContextAware", "getBean (MyImportProperties) (Before)");
         MyImportProperties properties = applicationContext.getBean(MyImportProperties.class);
-        println(log, "ApplicationContextAware", "getBean (MyImportProperties) (After)", properties.getName());
+        println(log, "ApplicationContextAware", "getBean (MyImportProperties) (After)", String.valueOf(properties));
+        println(log, "", "", "获取出来的MyImportProperties实例是有的。但是实例的属性，name却是null。实际配置文件是有内容的。");
+        println(log, "", "", "这说明过早的获取了properties。1.x的Spring是何时绑定配置文件到@ConfigurationProperties实例的？");
+        println(log, "", "", "这也说明，在setApplicationContext里做一些逻辑处理，需要考虑更多。");
+        println(log, "", "", "并且可以看到这里applicationContext.getBean扫描了一次类型信息，并且FactoryBean的类型信息并没有被缓存。因为getObjectType又被调用了。");
     }
 }

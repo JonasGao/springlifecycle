@@ -32,6 +32,7 @@ public class MyAutoAware implements BeanFactoryPostProcessor, BeanDefinitionRegi
         println(log, "BeanFactoryPostProcessor", "getBean (AutoAwareProperties) (Before)");
         AutoAwareProperties properties = beanFactory.getBean(AutoAwareProperties.class);
         println(log, "BeanFactoryPostProcessor", "getBean (AutoAwareProperties) (After)", String.valueOf(properties));
+        println(log, "", "", "这里是在postProcessBeanFactory方法里，get properties实例。可见还是太早。不绑定数据。");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class MyAutoAware implements BeanFactoryPostProcessor, BeanDefinitionRegi
 class AutoAwareProperties {
 
     public AutoAwareProperties() {
-        println(log, "@ConfigurationProperties", "constructor");
+        println(log, "(@ConfigurationProperties)", "constructor");
     }
 
     private String name;

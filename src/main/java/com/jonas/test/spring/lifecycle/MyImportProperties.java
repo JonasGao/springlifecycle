@@ -14,4 +14,11 @@ public class MyImportProperties {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "MyImportProperties{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
