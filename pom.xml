@@ -16,6 +16,10 @@
         <relativePath/>
     </parent>
 
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
     <modules>
         <module>simple</module>
         <module>http</module>
